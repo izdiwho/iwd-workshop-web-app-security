@@ -2,7 +2,7 @@
 
 @section('content')
     <form method="POST" action="/notes/store">
-        {{-- {{ csrf_field() }} --}}
+        {{ csrf_field() }}
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" name="title" placeholder="Title">
