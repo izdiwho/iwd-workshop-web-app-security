@@ -8,7 +8,6 @@
             <button type="submit">Search</button>
         </form>
         @if($search != null)
-            <p>Search results for: {!! $search !!}</p>
             <p>Search results for: {{  $search  }}</p>
         @endif
         <p>
