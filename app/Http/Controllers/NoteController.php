@@ -23,10 +23,10 @@ class NoteController extends Controller
     // view note
     public function view($id)
     {
-        $note = \App\Models\Note::findOrFail($id);
+        // $note = \App\Models\Note::findOrFail($id);
 
         // FIX
-        // $note = \App\Models\Note::where('id', $id)->where('user_id', auth()->user()->id)->firstOrFail();
+        $note = \App\Models\Note::where('id', $id)->where('user_id', auth()->user()->id)->firstOrFail();
 
         return view('view', ['note' => $note]);
     }
@@ -59,7 +59,7 @@ class NoteController extends Controller
         $note = \App\Models\Note::findOrFail($id);
 
         // FIX
-        // $note = \App\Models\Note::where('id', $id)->where('user_id', auth()->user()->id)->firstOrFail();
+        $note = \App\Models\Note::where('id', $id)->where('user_id', auth()->user()->id)->firstOrFail();
 
         $note->delete();
 
