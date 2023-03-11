@@ -11,6 +11,10 @@ class NoteController extends Controller
     {
         $orderParam = $request->get('sort');
 
+        if (\Auth::guest()) {
+            return redirect()->route('notes.index');
+        }
+
         $data = $orderParam ?
         \App\Models\Note::query()->where('user_id', $request->user()->id)->orderByRaw($orderParam)->get() :
         \App\Models\Note::where('user_id', $request->user()->id)->get();
