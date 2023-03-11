@@ -12,7 +12,7 @@ class NoteController extends Controller
         $orderParam = $request->get('sort');
 
         if (\Auth::guest()) {
-            return redirect()->route('notes.index');
+            return view('index');
         }
 
         $data = $orderParam ?
