@@ -9,22 +9,15 @@ class NoteController extends Controller
     // notes
     public function notes(Request $request)
     {
-        $orderParam = $request->get('sort');
+        $searchTerm = $request->get('search');
 
         if (\Auth::guest()) {
             return view('index');
         }
 
-        $data = $orderParam ?
-        \App\Models\Note::query()->where('user_id', $request->user()->id)->orderByRaw($orderParam)->get() :
-        \App\Models\Note::where('user_id', $request->user()->id)->get();
+        $data = $searchTerm ? \App\Models\Note::where('user_id', $request->user()->id)->where('title', 'like', '%' . $searchTerm . '%')->get() : \App\Models\Note::where('user_id', $request->user()->id)->get();
 
-        // FIX
-        // $data = $orderParam ?
-        // \App\Models\Note::where('user_id', $request->user()->id)->orderBy($orderParam)->get() :
-        // \App\Models\Note::where('user_id', $request->user()->id)->get();
-
-        return view('index', ['notes' => $data]);
+        return view('index', ['notes' => $data, 'search' => $searchTerm]);
     }
 
     // view note

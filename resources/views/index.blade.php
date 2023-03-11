@@ -3,10 +3,14 @@
 @section('content')
     @if (Auth::check())
         <h2>Your Notes</h2>
-        <p>
-            <a href="/?sort=title">Sort by title</a>
-            <a href="/?sort=body">Sort by body</a>
-        </p>
+        <form action="/" method="GET">
+            <input type="text" name="search" placeholder="Search">
+            <button type="submit">Search</button>
+        </form>
+        @if($search != null)
+            <p>Search results for: {!! $search !!}</p>
+            <p>Search results for: {{  $search  }}</p>
+        @endif
         <p>
             <a href="/notes/create">Create a new note</a>
         </p>
